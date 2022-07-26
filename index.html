@@ -6,24 +6,42 @@
     <title>Game Of Life</title>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  <body onload="draw();">
+  <body>
     <header>
       <h1>Conway's Game of Life <sup>&#8520;</sup></h1>
     </header>
-    <div id="section-customize"></div>
-    <canvas class="grid"></canvas>
-    <div id="section-controllers">
-      <button id="step-backword">Backword</button>
-      <button id="slow">Slow Down</button>
-      <button id="play">Play</button>
-      <button id="pause">Pause</button>
-      <button id="speed">Speed Up</button>
-      <button id="step-forward">Forward</button>
-      <button id="clear">Clear</button>
-      <button id="reset">Reset</button>
-    </div>
-    <div id="section-inserts"></div>
+    <article>
+      <div class="container">
+        <div class="customize">
+          <h2>CUSTOMIZE</h2>
+          <h5>Grid</h5>
+          <h5>Cell Color</h5>
+        </div>
+        <canvas class="grid"></canvas>
+        <div class="inserts">
+          <h2>INSERTS</h2>
+          <div>
+            <h5 class="tab">Stills</h5>
+            <canvas class="infinite"></canvas>
+            <h5 class="tab">Oscillators</h5>
+            <h5 class="tab">SpaceShips</h5>
+          </div>
+        </div>
+      </div>
+      <div class="controllers">
+        <button id="step-backword">Backword</button>
+        <button id="slow">Slow Down</button>
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="speed">Speed Up</button>
+        <button id="step-forward">Forward</button>
+        <button id="clear">Clear</button>
+        <button id="reset">Reset</button>
+      </div>
+    </article>
     <footer></footer>
-    <script src="js/index.js"></script>
+    <script src="js/GameCanvas.js"></script>
+    <!-- <script src="js/index.js"></script> -->
+    <script src="js/infinite.js"></script>
   </body>
 </html>

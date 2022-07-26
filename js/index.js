@@ -38,8 +38,8 @@ let yCells = canvas.height / cellDim;
 
 for (let i = 0; i < xCells; i++) {
   for (let j = 0; j < yCells; j++) {
-    const status =
-      Math.floor(Math.random() * (xCells * yCells)) % 2 === 0 ? true : false;
+    const status = false;
+    // Math.floor(Math.random() * (xCells * yCells)) % 2 === 0 ? true : false;
     grid[i] = [
       ...(grid[i] ? grid[i] : []),
       new Cell(i * cellDim, j * cellDim, status),
@@ -95,8 +95,7 @@ const run_generation = () => {
       });
 
       if (grid[x][y].get_alive_status()) {
-        if (numOfNeighbors < 2) newGrid[x][y] = false;
-        if (numOfNeighbors > 3) newGrid[x][y] = false;
+        if (numOfNeighbors < 2 || numOfNeighbors > 3) newGrid[x][y] = false;
       } else {
         if (numOfNeighbors === 3) newGrid[x][y] = true;
       }
@@ -121,6 +120,73 @@ const play = () => {
     clearInterval(timer);
   }
 };
+
+let mousedown = false;
+
+document.addEventListener("mousemove", (event) => {
+  if (mousedown) {
+    let rect = canvas.getBoundingClientRect();
+
+    let pos = {
+      x: event.x - rect.left,
+      y: event.y - rect.top,
+    };
+
+    // Check if mouse is inside of the canvas
+    if (
+      event.x >= rect.left &&
+      event.x <= rect.right &&
+      event.y >= rect.top &&
+      event.y <= rect.bottom
+    ) {
+      mousedown = true;
+
+      grid[Math.floor(pos.x / 25)][Math.floor(pos.y / 25)].aliveStatus = true;
+      newGrid[Math.floor(pos.x / 25)][Math.floor(pos.y / 25)] = true;
+
+      draw();
+    }
+  }
+});
+
+document.addEventListener("mouseup", (event) => {
+  mousedown = false;
+});
+
+document.addEventListener("mousedown", (event) => {
+  let rect = canvas.getBoundingClientRect();
+
+  let pos = {
+    x: event.x - rect.left,
+    y: event.y - rect.top,
+  };
+
+  // Check if mouse is inside of the canvas
+  if (
+    event.x >= rect.left &&
+    event.x <= rect.right &&
+    event.y >= rect.top &&
+    event.y <= rect.bottom
+  ) {
+    mousedown = true;
+
+    grid[Math.floor(pos.x / 25)][Math.floor(pos.y / 25)].aliveStatus = true;
+    newGrid[Math.floor(pos.x / 25)][Math.floor(pos.y / 25)] = true;
+
+    draw();
+  }
+});
+
+// Button Event Listeners
+
+// document.getElementById("step-backword").addEventListener("click", (event) => {
+//   run_generation();
+// });
+
+document.getElementById("step-forward").addEventListener("click", (event) => {
+  run_generation();
+  draw();
+});
 
 // Runs generation intervals
 document.getElementById("play").addEventListener("click", (event) => {
