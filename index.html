@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game Of Life</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <header>
@@ -12,19 +12,13 @@
     </header>
     <article>
       <div class="container">
-        <div class="customize">
-          <h2>CUSTOMIZE</h2>
-          <h5>Grid</h5>
-          <h5>Cell Color</h5>
-        </div>
-        <canvas class="grid"></canvas>
-        <div class="inserts">
-          <h2>INSERTS</h2>
-          <!-- <canvas class="infinite"></canvas> -->
-        </div>
+        <div class="customize"></div>
+        <div class="game"></div>
+        <!--  -->
+        <div class="inserts"></div>
+        <!--  -->
       </div>
       <div class="controllers">
-        <button id="step-backword">Backword</button>
         <button id="slow">Slow Down</button>
         <button id="play">Play</button>
         <button id="pause">Pause</button>
@@ -36,11 +30,14 @@
     </article>
     <footer></footer>
     <script src="js/Cell.js"></script>
-    <script src="js/StillCanvas.js"></script>
-    <script src="js/ActiveCanvas.js"></script>
-    <script src="js/MovingCanvas.js"></script>
-    <!-- <script src="js/GameCanvas.js"></script> -->
-    <script src="js/insert.js"></script>
-    <!-- <script src="js/index.js"></script> -->
+    <script src="js/canvas/StillCanvas.js"></script>
+    <script src="js/canvas/ActiveCanvas.js"></script>
+    <script src="js/canvas/MovingCanvas.js"></script>
+    <script src="js/canvas/GameCanvas.js"></script>
+    <script src="js/inserts/StillInserts.js"></script>
+    <script src="js/inserts/OscillatorInserts.js"></script>
+    <script src="js/inserts/SpaceshipInserts.js"></script>
+    <!-- <script src="js/inserts/insert.js"></script> -->
+    <script src="js/index.js"></script>
   </body>
 </html>

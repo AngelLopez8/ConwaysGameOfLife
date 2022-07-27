@@ -20,7 +20,7 @@ header h1 {
 
 .customize {
   text-align: center;
-  width: 100%;
+  /* width: 100%; */
   background-color: purple;
 }
 
@@ -31,16 +31,6 @@ header h1 {
 }
 
 /* INSERTS AREA STYLING */
-
-.inserts {
-  width: 100%;
-  background-color: blue;
-}
-
-.insert-item {
-  display: flex;
-  justify-content: center;
-}
 
 /* CONTROLLERS AREA STYLING */
 

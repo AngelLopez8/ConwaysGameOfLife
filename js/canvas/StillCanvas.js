@@ -1,11 +1,15 @@
-class MovingCanvas {
+const WIDTH = 100;
+const HEIGHT = 100;
+
+class StillCanvas {
   constructor(x, y, item, parentElement) {
+    // Create new Canvas
     this.element = document.createElement("canvas");
     this.element.width = WIDTH;
     this.element.height = HEIGHT;
 
+    // Create new Div and append Canvas to div and div to parentElement
     const newContainer = document.createElement("div");
-    newContainer.className = "insert-item";
     newContainer.append((document.createElement("h5").textContent = item.name));
     newContainer.appendChild(this.element);
     parentElement.appendChild(newContainer);
@@ -19,7 +23,6 @@ class MovingCanvas {
     this.yCells = y;
 
     this.initialCells = [];
-    this.newCells = [];
 
     this.init(item);
   }
@@ -32,10 +35,6 @@ class MovingCanvas {
         this.initialCells[x] = [
           ...(this.initialCells[x] ? this.initialCells[x] : []),
           new Cell(x * this.cellXDim, y * this.cellYDim, item.data[x][y]),
-        ];
-        this.newCells[x] = [
-          ...(this.newCells[x] ? this.newCells[x] : []),
-          item.data[x][y],
         ];
       }
     }
@@ -63,20 +62,5 @@ class MovingCanvas {
     }
     this.context.strokeStyle = "#888";
     this.context.stroke();
-  }
-
-  update() {
-    run_generation(this.initialCells, this.newCells, this.xCells, this.yCells);
-
-    this.context.translate(-1, -1);
-
-    for (let x = 0; x < this.xCells; x++) {
-      for (let y = 0; y < this.yCells; y++) {
-        this.initialCells[x][y].x += -1;
-        this.initialCells[x][y].y += -1;
-      }
-    }
-
-    this.draw();
   }
 }
