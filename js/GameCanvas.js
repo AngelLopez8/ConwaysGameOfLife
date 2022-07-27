@@ -26,15 +26,6 @@ const minY = -(extraYCells / 2) * cellDim;
 const maxX = gameCanvas.width + (extraXCells / 2) * cellDim;
 const maxY = gameCanvas.height + (extraYCells / 2) * cellDim;
 
-// Cell Class
-class Cell {
-  constructor(x, y, aliveStatus) {
-    this.x = x;
-    this.y = y;
-    this.aliveStatus = aliveStatus;
-  }
-}
-
 // Populate Cell array
 const initiate_cells = () => {
   let xCoord = minX;

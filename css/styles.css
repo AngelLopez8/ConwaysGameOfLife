@@ -37,6 +37,11 @@ header h1 {
   background-color: blue;
 }
 
+.insert-item {
+  display: flex;
+  justify-content: center;
+}
+
 /* CONTROLLERS AREA STYLING */
 
 .controllers {
