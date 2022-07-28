@@ -13,51 +13,85 @@ gameCanvas.element.addEventListener("mouseup", (event) => {
     event.y >= rect.top &&
     event.y <= rect.bottom
   ) {
+    // Calculate x and y with prev position and current position difference
     let x =
-      Math.floor(pos.x / gameCanvas.cellXDim) + gameCanvas.extraXCells / 2;
+      Math.floor((prev.x + pos.x) / gameCanvas.cellXDim) +
+      gameCanvas.extraXCells / 2;
+    // let x =
+    //   Math.floor(pos.x / gameCanvas.cellXDim) + gameCanvas.extraXCells / 2;
     let y =
-      Math.floor(pos.y / gameCanvas.cellYDim) + gameCanvas.extraYCells / 2;
+      Math.floor((prev.y + pos.y) / gameCanvas.cellYDim) +
+      gameCanvas.extraYCells / 2;
+    // let y =
+    //   Math.floor(pos.y / gameCanvas.cellYDim) + gameCanvas.extraYCells / 2;
 
     gameCanvas.currentCells[x][y].aliveStatus =
       !gameCanvas.currentCells[x][y].aliveStatus;
     gameCanvas.newCells[x][y] = !gameCanvas.newCells[x][y];
   }
   gameCanvas.draw();
-  // reset();
+  reset();
 });
 
 /**************************************************************** */
 // Mouse event handling:
-// let start;
+let prev = {
+  x: 0,
+  y: 0,
+};
+let start;
 
-// const getPos = (e) => ({
-//   x: e.clientX - gameCanvas.element.offsetLeft,
-//   y: e.clientY - gameCanvas.element.offsetTop,
-// });
+const getPos = (e) => ({
+  x: e.clientX - gameCanvas.element.offsetLeft,
+  y: e.clientY - gameCanvas.element.offsetTop,
+});
 
-// const reset = () => {
-//   start = null;
-//   // ctx.setTransform(1, 0, 0, 1, 0, 0); // reset translation
-//   gameCanvas.draw();
-// };
+const reset = () => {
+  start = null;
+  // ctx.setTransform(1, 0, 0, 1, 0, 0); // reset translation
+  gameCanvas.draw();
+};
 
-// gameCanvas.element.addEventListener("mousedown", (event) => {
-//   reset();
-//   start = getPos(event);
-// });
+gameCanvas.element.addEventListener("mousedown", (event) => {
+  reset();
+  start = getPos(event);
+});
 
 // gameCanvas.element.addEventListener("mouseleave", reset);
 
-// gameCanvas.element.addEventListener("mousemove", (e) => {
-//   // Only move the grid when we registered a mousedown event
-//   if (!start) return;
-//   let pos = getPos(e);
-//   // Move coordinate system in the same way as the cursor
-//   gameCanvas.context.translate(pos.x - start.x, pos.y - start.y);
+gameCanvas.element.addEventListener("mousemove", (e) => {
+  // Only move the grid when we registered a mousedown event
+  if (!start) return;
+  let pos = getPos(e);
 
-//   gameCanvas.draw();
-//   start = pos;
-// });
+  // Move coordinate system in the same way as the cursor
+  //   gameCanvas.context.translate(pos.x - start.x, pos.y - start.y);
+
+  prev.x -= pos.x - start.x;
+  prev.y -= pos.y - start.y;
+
+  // If board is in bounce translate else stop
+  if (
+    gameCanvas.minX - prev.x <= 0 &&
+    gameCanvas.maxX - prev.x >= gameCanvas.element.width
+  ) {
+    gameCanvas.context.translate(pos.x - start.x, 0);
+  } else {
+    prev.x += pos.x - start.x;
+  }
+
+  // If board is in bounce translate else stop
+  if (
+    gameCanvas.minY - prev.y <= 0 &&
+    gameCanvas.maxY - prev.y >= gameCanvas.element.height
+  ) {
+    gameCanvas.context.translate(0, pos.y - start.y);
+  } else {
+    prev.y += pos.y - start.y;
+  }
+  gameCanvas.draw();
+  start = pos;
+});
 
 /**************************************************************** */
 

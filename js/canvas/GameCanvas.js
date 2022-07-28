@@ -1,5 +1,5 @@
-const GAMEWIDTH = 800;
-const GAMEHEIGHT = 800;
+let GAMEWIDTH = this.innerWidth * 0.8;
+let GAMEHEIGHT = GAMEWIDTH;
 
 class GameCanvas {
   constructor(x, y, parentElement) {
@@ -30,8 +30,8 @@ class GameCanvas {
 
     this.minX = -(this.extraXCells / 2) * this.cellXDim;
     this.minY = -(this.extraYCells / 2) * this.cellYDim;
-    this.maxX = (this.extraXCells / 2) * this.cellXDim + WIDTH;
-    this.maxY = (this.extraYCells / 2) * this.cellYDim + HEIGHT;
+    this.maxX = (this.extraXCells / 2) * this.cellXDim + GAMEWIDTH;
+    this.maxY = (this.extraYCells / 2) * this.cellYDim + GAMEHEIGHT;
 
     /***************************** */
     this.savedCells = [];
@@ -46,13 +46,14 @@ class GameCanvas {
     for (let x = 0; x < this.xCells; x++) {
       let yCoord = this.minY;
       for (let y = 0; y < this.yCells; y++) {
+        let status = false;
         this.currentCells[x] = [
           ...(this.currentCells[x] ? this.currentCells[x] : []),
-          new Cell(xCoord, yCoord, false),
+          new Cell(xCoord, yCoord, status),
         ];
         this.newCells[x] = [
           ...(this.newCells[x] ? this.newCells[x] : []),
-          false,
+          status,
         ];
         yCoord += this.cellYDim;
       }
@@ -123,3 +124,13 @@ class GameCanvas {
 
 let gameDiv = document.querySelector(".game");
 const gameCanvas = new GameCanvas(50, 50, gameDiv);
+
+window.addEventListener("resize", (event) => {
+  GAMEWIDTH = window.innerWidth * 0.8;
+  GAMEHEIGHT = GAMEWIDTH;
+
+  gameCanvas.element.width = GAMEWIDTH;
+  gameCanvas.element.height = GAMEHEIGHT;
+
+  gameCanvas.clear();
+});
