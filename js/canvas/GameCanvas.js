@@ -1,5 +1,14 @@
-let GAMEWIDTH = this.innerWidth * 0.8;
-let GAMEHEIGHT = GAMEWIDTH;
+let GAMEWIDTH = window.innerWidth * 0.6;
+let GAMEHEIGHT = window.innerHeight * 0.6;
+
+/***************************** */
+
+let grid = true;
+let gridLineColor = "#888";
+let aliveCellColor = "black";
+let deadCellColor = "white";
+
+/***************************** */
 
 class GameCanvas {
   constructor(x, y, parentElement) {
@@ -68,7 +77,9 @@ class GameCanvas {
 
     this.currentCells.forEach((row) => {
       row.forEach((cell) => {
-        this.context.fillStyle = cell.aliveStatus ? "black" : "white";
+        this.context.fillStyle = cell.aliveStatus
+          ? aliveCellColor
+          : deadCellColor;
         this.context.fillRect(cell.x, cell.y, this.cellXDim, this.cellYDim);
       });
     });
@@ -82,7 +93,7 @@ class GameCanvas {
       this.context.moveTo(this.minX, y);
       this.context.lineTo(this.maxX, y);
     }
-    this.context.strokeStyle = "#888";
+    this.context.strokeStyle = gridLineColor;
     this.context.stroke();
   }
 
@@ -126,8 +137,8 @@ let gameDiv = document.querySelector(".game");
 const gameCanvas = new GameCanvas(50, 50, gameDiv);
 
 window.addEventListener("resize", (event) => {
-  GAMEWIDTH = window.innerWidth * 0.8;
-  GAMEHEIGHT = GAMEWIDTH;
+  GAMEWIDTH = window.innerWidth * 0.6;
+  GAMEHEIGHT = window.innerHeight * 0.6;
 
   gameCanvas.element.width = GAMEWIDTH;
   gameCanvas.element.height = GAMEHEIGHT;

@@ -15,26 +15,3 @@ header h1 {
   display: flex;
   justify-content: center;
 }
-
-/* CUSTOMIZE AREA STYLING */
-
-.customize {
-  text-align: center;
-  /* width: 100%; */
-  background-color: purple;
-}
-
-/* GRID STYLING */
-
-.grid {
-  /* background-color: yellow; */
-}
-
-/* INSERTS AREA STYLING */
-
-/* CONTROLLERS AREA STYLING */
-
-.controllers {
-  text-align: center;
-  background-color: green;
-}

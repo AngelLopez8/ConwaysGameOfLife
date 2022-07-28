@@ -146,3 +146,25 @@ document.querySelector("#clear").addEventListener("click", (event) => {
 document.querySelector("#reset").addEventListener("click", (event) => {
   gameCanvas.reset();
 });
+
+// Color Handlers
+document
+  .querySelector("#grid-line-color")
+  .addEventListener("input", (event) => {
+    gridLineColor = event.target.value;
+    gameCanvas.draw();
+  });
+
+document
+  .querySelector("#alive-cell-color")
+  .addEventListener("input", (event) => {
+    aliveCellColor = event.target.value;
+    gameCanvas.draw();
+  });
+
+document
+  .querySelector("#dead-cell-color")
+  .addEventListener("input", (event) => {
+    deadCellColor = event.target.value;
+    gameCanvas.draw();
+  });
