@@ -8,6 +8,13 @@ const blockCanvas = new StillCanvas(
   block,
   stillsDiv
 );
+
+let temp = [];
+
+blockCanvas.element.addEventListener("mousedown", (event) => {
+  temp = blockCanvas.initialCells;
+});
+
 const beehiveCanvas = new StillCanvas(
   beehive.data.length,
   beehive.data[0].length,

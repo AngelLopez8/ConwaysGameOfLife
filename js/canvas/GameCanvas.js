@@ -1,5 +1,5 @@
-let GAMEWIDTH = window.innerWidth * 0.6;
-let GAMEHEIGHT = window.innerHeight * 0.6;
+let GAMEWIDTH = window.innerWidth * 0.8;
+let GAMEHEIGHT = window.innerHeight * 0.8;
 
 /***************************** */
 

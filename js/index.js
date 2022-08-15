@@ -168,3 +168,22 @@ document
     deadCellColor = event.target.value;
     gameCanvas.draw();
   });
+
+/************************************************************* */
+document.querySelector("#stills-tab").addEventListener("click", () => {
+  document.querySelectorAll(".item")[0].classList.toggle("open", true);
+  document.querySelectorAll(".item")[1].classList.toggle("open", false);
+  document.querySelectorAll(".item")[2].classList.toggle("open", false);
+});
+
+document.querySelector("#oscillators-tab").addEventListener("click", () => {
+  document.querySelectorAll(".item")[0].classList.toggle("open", false);
+  document.querySelectorAll(".item")[1].classList.toggle("open", true);
+  document.querySelectorAll(".item")[2].classList.toggle("open", false);
+});
+
+document.querySelector("#spaceships-tab").addEventListener("click", () => {
+  document.querySelectorAll(".item")[0].classList.toggle("open", false);
+  document.querySelectorAll(".item")[1].classList.toggle("open", false);
+  document.querySelectorAll(".item")[2].classList.toggle("open", true);
+});

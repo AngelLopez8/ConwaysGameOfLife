@@ -8,40 +8,50 @@
   </head>
   <body>
     <header>
-      <h1>Conway's Game of Life <sup>&#8520;</sup></h1>
+      <h1 class="center">Conway's Game of Life</h1>
     </header>
-    <article>
-      <!-- CONTROLLERS AREA  -->
-      <div class="controllers">
-        <button id="slow">Slow Down</button>
-        <button id="play">Play</button>
-        <button id="pause">Pause</button>
-        <button id="speed">Speed Up</button>
-        <button id="step-forward">Forward</button>
-        <button id="clear">Clear</button>
-        <button id="reset">Reset</button>
-      </div>
-      <div class="container">
-        <!-- CUSTOMIZE AREA -->
-        <div class="customize">
-          <h3>Customize Board</h3>
-          <label>Grid Line Color</label>
-          <input id="grid-line-color" type="color" value="#888888" />
-          <br />
-          <label>Alive Cell Color</label>
-          <input id="alive-cell-color" type="color" value="#000000" />
-          <br />
-          <label>Dead Cell Color</label>
-          <input id="dead-cell-color" type="color" value="#FFFFFF" />
+    <article class="container">
+      <div class="main-container">
+        <!-- CONTROLLERS AREA  -->
+        <div class="controllers">
+          <button id="slow">Slow Down</button>
+          <button id="play">Play</button>
+          <button id="pause">Pause</button>
+          <button id="speed">Speed Up</button>
+          <button id="step-forward">Forward</button>
+          <button id="clear">Clear</button>
+          <button id="reset">Reset</button>
+          <div class="customize-items">
+            <label>Grid Line Color</label>
+            <input id="grid-line-color" type="color" value="#888888" />
+            <br />
+            <label>Alive Cell Color</label>
+            <input id="alive-cell-color" type="color" value="#000000" />
+            <br />
+            <label>Dead Cell Color</label>
+            <input id="dead-cell-color" type="color" value="#FFFFFF" />
+          </div>
         </div>
         <!-- GAME AREA -->
         <div class="game"></div>
-        <!-- INSERTS AREA -->
-        <h3>Inserts</h3>
-        <div class="inserts">
-          <div id="stills"></div>
-          <div id="oscillators"></div>
-          <div id="spaceships"></div>
+      </div>
+      <!-- INSERTS AREA -->
+      <div class="inserts">
+        <div class="tabs">
+          <button class="tab-item" id="stills-tab">Stills</button>
+          <button class="tab-item" id="oscillators-tab">Oscillators</button>
+          <button class="tab-item" id="spaceships-tab">Spaceships</button>
+        </div>
+        <div class="tab-content">
+          <div class="item open">
+            <div class="hidden-box" id="stills"></div>
+          </div>
+          <div class="item">
+            <div class="hidden-box" id="oscillators"></div>
+          </div>
+          <div class="item">
+            <div class="hidden-box" id="spaceships"></div>
+          </div>
         </div>
       </div>
     </article>
